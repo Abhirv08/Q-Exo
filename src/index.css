@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --select-border: #777;
+  --select-focus: blue;
+  --select-arrow: var(--select-border);
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: inherit;
+  line-height: inherit;
+  width: 100%;
+  height: 2.5rem;
+  outline: none;
+  padding: 0 0.5em;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.select {
+  display: grid;
+  grid-template-areas: "select";
+  width: 100%;
+  height: 2.5rem;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  cursor: pointer;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  overflow: hidden;
+  align-items: center;
+  position: relative;
+}
+
+select,
+.select:after {
+  grid-area: select;
+}
+
+select:focus + .focus {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 2px solid var(--select-focus);
+  border-radius: inherit;
+}
+
+.tooltip {
+  position: absolute;
+  top: -20px;
+  display: none;
+  width: 7rem;
+  text-align: center;
+  padding: 2px;
+  color: white;
+  background-color: black;
+  font-size: 12px;
+}
+
+.sort:hover + .tooltip {
+  display: block;
+}
+
+th,
+td {
+  padding: 8px 0;
+}
+
+td {
+  max-width: 20ch;
+}
+
+table tbody {
+  display: block;
+  max-height: 380px;
+  overflow-y: scroll;
+}
+
+table thead,
+table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
