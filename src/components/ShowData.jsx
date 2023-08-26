@@ -61,7 +61,7 @@ const ShowData = ({ data }) => {
                     }
                 </tbody>
             </table>
-            <div className='text-center mt-5 absolute bottom-7 left-1/3'>Data collected from <span className='text-blue-500'> <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PSCompPars" target='_black'>this table</a></span>. You can read about it <span className='text-blue-500'><a href="https://exoplanetarchive.ipac.caltech.edu/docs/pscp_about.html" target='_black'>
+            <div className='text-center mt-5 absolute bottom-7 left-1/3'>Data collected from <span className='text-blue-500'> <a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PSCompPars" target='_blank' rel="noopener noreferrer">this table</a></span>. You can read about it <span className='text-blue-500'><a href="https://exoplanetarchive.ipac.caltech.edu/docs/pscp_about.html" target='_blank' rel="noopener noreferrer">
                 here</a></span>.
             </div>
         </div>
