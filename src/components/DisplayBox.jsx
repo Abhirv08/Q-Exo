@@ -3,7 +3,7 @@ import InputBox from './InputBox';
 import ShowData from './ShowData';
 import PropTypes from 'prop-types';
 
-const DisplayBox = ({ csvData, distinctColumnData }) => {
+const DisplayBox = ({ csvData, distinctColumnData, setPopUpMessage }) => {
 
     const { hostname = [], disc_method = [], disc_year = [], disc_facility = [] } = distinctColumnData;
     const [selectedHostName, setSelectedHostName] = useState('');
@@ -12,7 +12,6 @@ const DisplayBox = ({ csvData, distinctColumnData }) => {
     const [selectedDisc_facility, setselectedDisc_facility] = useState('');
     const [isDataAvailable, setIsDataAvailable] = useState(false);
     const [filteredData, setFilteredData] = useState([]);
-    const [popupVisiblity, setPopupVisiblity] = useState(true)
 
     const filterData = () => {
 
@@ -30,15 +29,25 @@ const DisplayBox = ({ csvData, distinctColumnData }) => {
 
         setIsDataAvailable(true)
         setFilteredData(filtered);
+        if (filtered.length === 0) {
+            setPopUpMessage("No Exo Planet has been discovered with such conditions. Please select some other combination...");
+
+            setTimeout(() => {
+                setPopUpMessage("")
+            }, 5000);
+        }
     }
 
     const handleSearch = () => {
         if (selectedHostName === "" && selectedDisc_facility === "" && selectedDisc_method === "" && selectedDisc_year === "") {
-            setFilteredData([])
-            setPopupVisiblity(true)
+            setFilteredData([]);
+            setPopUpMessage("Please select something...");
+            setTimeout(() => {
+                setPopUpMessage("")
+            }, 5000);
             return;
         }
-        setPopupVisiblity(false)
+        setPopUpMessage("")
         filterData()
     }
 
@@ -100,6 +109,7 @@ DisplayBox.propTypes = {
         disc_year: PropTypes.arrayOf(PropTypes.string),
         disc_facility: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
+    setPopUpMessage: PropTypes.func.isRequired,
 };
 
 export default DisplayBox   
