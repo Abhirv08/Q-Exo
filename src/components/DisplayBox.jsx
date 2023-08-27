@@ -29,6 +29,7 @@ const DisplayBox = ({ csvData, distinctColumnData, setPopUpMessage }) => {
 
         setIsDataAvailable(true)
         setFilteredData(filtered);
+
         if (filtered.length === 0) {
             setPopUpMessage("No Exo Planet has been discovered with such conditions. Please select some other combination...");
 
@@ -81,7 +82,7 @@ const DisplayBox = ({ csvData, distinctColumnData, setPopUpMessage }) => {
                     Exoplanets are planets outside our Solar System. <br />
                     <span className='text-blue-500'>
                         <a href='https://exoplanetarchive.ipac.caltech.edu/' target='_blank' rel="noopener noreferrer">{" "} {`NASA's Exoplanet Archive`}</a>
-                    </span> can give you more information about expolanets found till date.
+                    </span> can give you more information about Exo Planets found till date.
                 </div>
             </div>}
             {
