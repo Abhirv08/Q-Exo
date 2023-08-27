@@ -36,45 +36,41 @@ const isSecondStringSmaller = (s1, s2) => {
     return true;
 }
 
+const mergeSort = (arr, column, start, end) => {
 
-const sortInAscFunction = (arr, column) => {
+    if (start >= end) return;
 
-    column = getKey(column);
+    let mid = Math.floor((start + (end - start) / 2));
 
-    for (let i = 0; i < arr.length; i++) {
-        let minVal = i;
-        for (let j = i + 1; j < arr.length; j++) {
-            if (isSecondStringSmaller(arr[minVal][column], arr[j][column])) {
-                minVal = j;
-            }
+    mergeSort(arr, column, start, mid);
+    mergeSort(arr, column, mid + 1, end);
+    merge(arr, column, start, mid, end);
+}
+
+const merge = (arr, column, start, mid, end) => {
+    let i = start, j = mid + 1;
+    let temp = [];
+
+    while (i <= mid && j <= end) {
+        if (isSecondStringSmaller(arr[i][column], arr[j][column])) {
+            temp.push(arr[j++]);
+        } else {
+            temp.push(arr[i++]);
         }
-        let temp = arr[i];
-        arr[i] = arr[minVal];
-        arr[minVal] = temp;
     }
 
-    return arr;
+    while (i <= mid) {
+        temp.push(arr[i++]);
+    }
+
+    while (j <= end) {
+        temp.push(arr[j++]);
+    }
+
+    for (let k = start; k <= end; k++) {
+        arr[k] = temp[k - start];
+    }
 }
 
 
-const sortInDescFunction = (arr, column) => {
-
-    column = getKey(column);
-
-    for (let i = 0; i < arr.length; i++) {
-        let maxVal = i;
-        for (let j = i + 1; j < arr.length; j++) {
-            if (!isSecondStringSmaller(arr[maxVal][column], arr[j][column])) {
-                maxVal = j;
-            }
-        }
-        let temp = arr[i];
-        arr[i] = arr[maxVal];
-        arr[maxVal] = temp;
-    }
-
-    return arr;
-}
-
-
-export { sortInAscFunction, sortInDescFunction }
+export { mergeSort, getKey }

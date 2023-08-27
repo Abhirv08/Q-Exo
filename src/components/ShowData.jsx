@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import ColumnHeading from './ColumnHeading';
 import EachRow from './EachRow';
 import { useEffect, useState } from 'react';
-import { sortInAscFunction, sortInDescFunction } from './consants';
+import { mergeSort, getKey } from './consants';
 
 
 const ShowData = ({ data }) => {
@@ -16,19 +16,19 @@ const ShowData = ({ data }) => {
             return;
         }
 
-        const [order, columnName] = sortData.split("@");
+        let [order, columnName] = sortData.split("@");
+        columnName = getKey(columnName);
 
-        let newlySortedData = [...sortedData]
-        if (order.toLocaleLowerCase() === 'asc') {
-            sortInAscFunction(newlySortedData, columnName);
-        } else {
-            sortInDescFunction(newlySortedData, columnName);
+        let newlySortedData = [...data]
+        mergeSort(newlySortedData, columnName, 0, newlySortedData.length - 1);
+        if (order === 'desc') {
+            newlySortedData.reverse();
         }
 
         setSortedData(newlySortedData);
     }, [sortData, data])
 
-
+    console.log("sortedData", sortedData)
     return (
         <div className='mt-5 '>
             <table className='w-full'>
