@@ -28,7 +28,6 @@ const ShowData = ({ data }) => {
         setSortedData(newlySortedData);
     }, [sortData, data])
 
-    console.log("sortedData", sortedData)
     return (
         <div className='mt-5 '>
             <table className='w-full'>
