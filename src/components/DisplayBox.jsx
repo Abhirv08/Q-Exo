@@ -78,12 +78,10 @@ const DisplayBox = ({ csvData, distinctColumnData, setPopUpMessage }) => {
             </div>
             {!isDataAvailable && <div className='h-full pb-10 flex items-center justify-center'>
                 <div className='text-center text-2xl font-bold mt-5 '>
-                    Exoplanets are planets outside the Solar System. <br />
-                    Here you can query
+                    Exoplanets are planets outside our Solar System. <br />
                     <span className='text-blue-500'>
                         <a href='https://exoplanetarchive.ipac.caltech.edu/' target='_blank' rel="noopener noreferrer">{" "} {`NASA's Exoplanet Archive`}</a>
-                    </span>
-                    {" "}and find the one you love the most.
+                    </span> can give you more information about expolanets found till date.
                 </div>
             </div>}
             {
